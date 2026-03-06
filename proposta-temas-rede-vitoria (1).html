@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposta de Temas · Elas Transformam · Jhúlia Bungenstab</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #0E0E0E;
+    --surface:   #161616;
+    --card:      #1C1C1C;
+    --gold:      #C9A84C;
+    --gold-soft: #E8C96A;
+    --gold-dim:  rgba(201,168,76,0.12);
+    --cream:     #F5F0E8;
+    --muted:     #888880;
+    --border:    rgba(201,168,76,0.2);
+    --white:     #FFFFFF;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--cream);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    line-height: 1.75;
+    min-height: 100vh;
+  }
+
+  /* ── GRAIN OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    padding: 80px 40px 64px;
+    max-width: 860px;
+    margin: 0 auto;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 32px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(42px, 7vw, 72px);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold-soft);
+  }
+
+  .hero-sub {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    align-items: center;
+  }
+
+  .hero-sub a {
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 13px;
+  }
+
+  .hero-sub a:hover { text-decoration: underline; }
+
+  /* ── MAIN CONTAINER ── */
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 40px 100px;
+  }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── CONTEXT BLOCK ── */
+  .context-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 36px 40px;
+    margin-bottom: 48px;
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+
+  .context-block p {
+    font-size: 15px;
+    color: #CCCAC2;
+    line-height: 1.8;
+  }
+
+  /* ── DATA TABLE ── */
+  .data-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-bottom: 48px;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .data-cell {
+    background: var(--card);
+    padding: 20px 24px;
+    border: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .data-cell .label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .data-cell .value {
+    font-size: 14px;
+    color: var(--cream);
+    font-weight: 400;
+  }
+
+  .data-cell .value.urgent {
+    color: var(--gold-soft);
+    font-weight: 500;
+  }
+
+  /* ── QUOTE ── */
+  .quote-block {
+    border-left: 2px solid var(--gold);
+    padding: 24px 32px;
+    background: var(--gold-dim);
+    margin-bottom: 56px;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .quote-block blockquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--cream);
+    margin-bottom: 12px;
+  }
+
+  .quote-block cite {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    font-style: normal;
+  }
+
+  /* ── PROPOSAL CARDS ── */
+  .proposal {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    margin-bottom: 24px;
+    overflow: hidden;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .proposal:nth-child(1) { animation-delay: 0.3s; }
+  .proposal:nth-child(2) { animation-delay: 0.45s; }
+
+  .proposal-header {
+    padding: 36px 40px 28px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+
+  .proposal-num {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .proposal-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(26px, 4vw, 38px);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 10px;
+  }
+
+  .proposal-tagline {
+    font-size: 14px;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .proposal-body {
+    padding: 36px 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .proposal-section h3 {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .proposal-section p {
+    font-size: 14px;
+    color: #CCCAC2;
+    line-height: 1.8;
+  }
+
+  .proposal-section ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .proposal-section ul li {
+    font-size: 14px;
+    color: #CCCAC2;
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .proposal-section ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 12px;
+    top: 2px;
+  }
+
+  /* ── NEXT STEPS ── */
+  .next-steps {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 40px;
+    margin-top: 48px;
+    animation: fadeUp 0.8s 0.5s ease both;
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .step {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px;
+    background: var(--surface);
+    border: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .step-num {
+    width: 28px;
+    height: 28px;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    flex-shrink: 0;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .step-text {
+    font-size: 13px;
+    color: #CCCAC2;
+    line-height: 1.5;
+    padding-top: 4px;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 40px;
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    animation: fadeUp 0.8s 0.6s ease both;
+  }
+
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--cream);
+  }
+
+  .footer-brand span {
+    display: block;
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+  }
+
+  .footer-links a {
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .hero, .container { padding-left: 24px; padding-right: 24px; }
+    .data-grid { grid-template-columns: 1fr; }
+    .proposal-body { grid-template-columns: 1fr; gap: 28px; }
+    .proposal-header, .proposal-body { padding: 28px 24px; }
+    .steps-grid { grid-template-columns: 1fr; }
+    .context-block { padding: 28px 24px; }
+    .footer { padding: 32px 24px; flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Proposta de Temas · 2026</div>
+  <h1>Iniciativa<br><em>Elas Transformam</em></h1>
+  <div class="hero-sub">
+    <span>Jhúlia Bungenstab</span>
+    <span style="color:var(--border)">·</span>
+    <span>Especialista em Educação Corporativa & Design Instrucional</span>
+    <span style="color:var(--border)">·</span>
+    <a href="mailto:kliipel.jhulia@gmail.com">kliipel.jhulia@gmail.com</a>
+    <span style="color:var(--border)">·</span>
+    <a href="https://www.linkedin.com/in/jhulia-bungenstab" target="_blank">LinkedIn</a>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="container">
+
+  <!-- CONTEXTO -->
+  <div class="section-label">Contexto</div>
+  <div class="context-block">
+    <p>
+      Este documento apresenta duas propostas de tema para os encontros da iniciativa <strong style="color:var(--cream);font-weight:500">Elas Transformam</strong>, da Rede Vitória, elaboradas a partir do briefing realizado com Patriciana Lembranzza, Supervisora de RH.
+      <br><br>
+      O conteúdo foi desenvolvido com base no diagnóstico do público, nos objetivos da contratante e nas diretrizes levantadas na etapa de briefing, seguindo uma abordagem de design instrucional orientado por dados e intenção estratégica.
+    </p>
+  </div>
+
+  <!-- DADOS DO PROJETO -->
+  <div class="section-label">Dados do Projeto</div>
+  <div class="data-grid">
+    <div class="data-cell">
+      <div class="label">Empresa</div>
+      <div class="value">TV Vitória · Rede Vitória</div>
+    </div>
+    <div class="data-cell">
+      <div class="label">Responsável</div>
+      <div class="value">Patriciana Lembranzza · Supervisora de RH</div>
+    </div>
+    <div class="data-cell">
+      <div class="label">Público estimado</div>
+      <div class="value">Até 30 mulheres por turma · ~1.555 colaboradoras</div>
+    </div>
+    <div class="data-cell">
+      <div class="label">Formato</div>
+      <div class="value">Presencial (manhã) + Online via Teams (tarde)</div>
+    </div>
+    <div class="data-cell">
+      <div class="label">Duração por sessão</div>
+      <div class="value">40 minutos</div>
+    </div>
+    <div class="data-cell">
+      <div class="label">Datas previstas</div>
+      <div class="value">18 e 19 de março de 2026</div>
+    </div>
+    <div class="data-cell" style="grid-column: span 2;">
+      <div class="label">Urgência</div>
+      <div class="value urgent">⚡ Máxima — 5 de 5</div>
+    </div>
+  </div>
+
+  <!-- QUOTE -->
+  <div class="section-label">Insight do Diagnóstico</div>
+  <div class="quote-block">
+    <blockquote>
+      "As mulheres não têm autoconfiança. Têm potencial, mas não confiam em si mesmas. Síndrome da impostora."
+    </blockquote>
+    <cite>— Patriciana Lembranzza · Briefing de 05/03/2026</cite>
+  </div>
+
+  <!-- PROPOSTAS -->
+  <div class="section-label">Propostas de Tema</div>
+
+  <!-- PROPOSTA 1 -->
+  <div class="proposal">
+    <div class="proposal-header">
+      <div class="proposal-num">Proposta 01</div>
+      <div class="proposal-title">Mulheres que Confiam em Si<br>Transformam Tudo</div>
+      <div class="proposal-tagline">Um encontro sobre presença, potencial e protagonismo feminino.</div>
+    </div>
+    <div class="proposal-body">
+      <div class="proposal-section">
+        <h3>Objetivo</h3>
+        <p>Fazer com que cada participante reconheça seu próprio valor e saia do encontro com uma percepção mais concreta de quem ela é e do que já entrega, rompendo com a narrativa interna de que "não é suficiente".</p>
+      </div>
+      <div class="proposal-section">
+        <h3>Matriz de Conteúdo</h3>
+        <ul>
+          <li>O que é autoconfiança na prática, e por que tantas mulheres competentes não a sentem</li>
+          <li>Síndrome da impostora: como ela aparece no dia a dia sem que a gente perceba</li>
+          <li>Forças que você já tem e ainda não nomeou</li>
+          <li>Como a falta de confiança afeta a voz, a presença e as decisões</li>
+          <li>Atividade prática: mapeamento de conquistas e forças pessoais</li>
+          <li>Como transformar o ambiente ao redor a partir de quem você já é</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROPOSTA 2 -->
+  <div class="proposal">
+    <div class="proposal-header">
+      <div class="proposal-num">Proposta 02</div>
+      <div class="proposal-title">Elas que Transformam:<br>Reconheça o Seu Lugar</div>
+      <div class="proposal-tagline">Sua história, sua voz, seu impacto.</div>
+    </div>
+    <div class="proposal-body">
+      <div class="proposal-section">
+        <h3>Objetivo</h3>
+        <p>Conduzir as participantes a um processo de reconhecimento coletivo, onde cada uma vê no grupo um espelho e, ao mesmo tempo, se percebe como referência para as outras, fortalecendo o pertencimento e o protagonismo dentro da empresa.</p>
+      </div>
+      <div class="proposal-section">
+        <h3>Matriz de Conteúdo</h3>
+        <ul>
+          <li>O que significa ocupar espaço com intenção, dentro e fora das reuniões</li>
+          <li>Histórias que transformam: o poder de reconhecer a própria trajetória</li>
+          <li>Comunicação com presença: como sua voz impacta quem está ao redor</li>
+          <li>Visibilidade sem perder autenticidade, aparecer sendo você mesma</li>
+          <li>Atividade prática: roda de escuta e reconhecimento entre pares</li>
+          <li>Construindo uma presença que inspira: do individual para o coletivo</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRÓXIMOS PASSOS -->
+  <div class="next-steps">
+    <div class="section-label" style="margin-bottom:0">Próximos Passos</div>
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text">Patriciana escolhe o tema de sua preferência</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text">Jhúlia estrutura o roteiro completo dos 40 minutos</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text">Adaptação do conteúdo para o formato online da sessão da tarde</div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-text">Alinhamento final de detalhes antes dos encontros</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-brand">
+    Jhúlia Bungenstab
+    <span>Especialista em Educação Corporativa & Design Instrucional</span>
+  </div>
+  <div class="footer-links">
+    <a href="mailto:kliipel.jhulia@gmail.com">E-mail</a>
+    <a href="https://wa.me/5527981061611" target="_blank">WhatsApp</a>
+    <a href="https://www.linkedin.com/in/jhulia-bungenstab" target="_blank">LinkedIn</a>
+    <a href="https://jhulia-bungenstab-7eo8gv1.gamma.site/" target="_blank">Portfólio</a>
+  </div>
+</div>
+
+</body>
+</html>
